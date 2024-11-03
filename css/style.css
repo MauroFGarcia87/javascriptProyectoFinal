@@ -1,0 +1,24 @@
+.fondo{
+    background-image:  url('/img/fondoOriginal.jpg');
+    background-size: 100% 100%;
+    
+}
+
+.color{
+    background: darkblue;
+    width: 50px;
+    height: 50px;
+}
+
+.numeroCarrito{
+    position: absolute;
+    margin-left: 1%;
+    margin-bottom:2% ;
+    color: black;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.carrito{
+    margin-top: 20%;
+}
