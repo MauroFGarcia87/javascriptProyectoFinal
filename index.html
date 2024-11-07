@@ -46,22 +46,18 @@
                 >
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contacto.html">Productos</a>
+                <a class="nav-link" href="index.html#productos">Productos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="contacto.html">Contacto</a>
+                <a class="nav-link" data-bs-toggle="modal" data-bs-target="#modalContacto" href="">Contacto</a>
               </li>
               <li class="nav-item"></li>
             </ul>
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" href="loginAdmin.html">Administracion</a>
+                <a class="nav-link" href="loginAdmin.html"><button  class="btn btn-danger">Iniciar sesion</button></a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="contacto.html"
-                  ><button  class="btn btn-danger">Iniciar sesion</button></a
-                >
-              </li>
+              
               <li class="nav-item">
                 <!--
                   <a href="" data-bs-toggle="modal" data-bs-target="#modal1">
@@ -86,7 +82,7 @@
           Elegi tu carpa que se adapte a tu necesidad
         </h3>
       </div>
-      <div class="">
+      <div class="" id="productos">
         <div class="container">
           <section class="row" id="grilla"></section>
         </div>
@@ -136,6 +132,35 @@
                   Cerrar
                 </button>
                 <button type="button" class="btn btn-primary">Comprar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Contacto-->
+
+        <div class="modal fade" id="modalContacto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Enviar su consulata</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Mail:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Mensaje:</label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Enviar</button>
               </div>
             </div>
           </div>

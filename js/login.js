@@ -16,9 +16,9 @@ function login(e){
     e.preventDefault();
     if( (inputPass = pass) && (inputMail = email)){
         window.location = '../admin.html';
-        console.log('iiiiiiiiiiiiiiiiii')
+       
     }else{
-        console.log('ooooooooooooooo')
+       
         console.log(inputMail.value)
         console.log(inputPass.value)
 
