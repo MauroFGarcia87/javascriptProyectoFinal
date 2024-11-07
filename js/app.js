@@ -6,6 +6,7 @@ let carrito = [];
 
 let numeroCarrito = 0;
 let tabla = document.getElementById('cuerpoTabla');
+let iconoCarrito = document.getElementById('nCarrito');
 
 cargaInicial();
 
@@ -60,17 +61,26 @@ function agregarAlCarrito(codigoCarpa){
     'Su producto fue agregado correctamente!',
     'success'
   );
+  numeroCarrito += 1;
+  
+  iconoCarrito.innerHTML = `${numeroCarrito}`;
+
+  console.log(numeroCarrito);
 }
 
 function cargarCarrito(){
+  let total = 0;
   listaCarrito= JSON.parse(localStorage.getItem('listaCarrito')) || [];
   console.log('Precionaste el boton carrito');
   console.log(listaCarrito);
   borrarTabla();
   listaCarrito.forEach(itemCarpa => {
     mostarProcuctoCarrito(itemCarpa);
-});
+    total += parseInt(itemCarpa.precio);
 
+});
+ tabla.innerHTML += `<h3> Total: $ ${total}`
+  console.log(total);
 }
 
 function mostarProcuctoCarrito(objCarpa){
@@ -78,7 +88,8 @@ function mostarProcuctoCarrito(objCarpa){
   tabla.innerHTML += ` <tr>    
     <td>${objCarpa.nombre}</td>
     <td>${objCarpa.precio}</td>  
-    </tr>`
+    </tr>
+    `
 }
 
 function borrarTabla(){
