@@ -1,6 +1,6 @@
 
 import { Carpa } from "./carpasClass.js";  
-import {validarSelect, campoRequerido, validarGeneral, validarNumeros, validarUrl} from "./validaciones.js"
+
 
 
 let codigo = document.getElementById('codigo');
@@ -16,10 +16,7 @@ let tabla = document.getElementById('cuerpoTabla');
 let listaCarpas = [];
 let paraModificar = false;
 
-tipo.addEventListener('blur', () =>{validarSelect(tipo)});
-nombre.addEventListener('blur', () => {campoRequerido(nombre)});
-descripcion.addEventListener('blur', ()=> {campoRequerido(descripcion)});
-personas.addEventListener('blur', ()=>{validarSelect(personas)});
+
 formulario.addEventListener('submit', guardar);
 
 
@@ -27,7 +24,7 @@ cargaIncial();
 
 function guardar(e){
     e.preventDefault();
-    if(validarGeneral()){
+   
 
         if(paraModificar == false){
             crearCarpa();
@@ -36,9 +33,7 @@ function guardar(e){
             limpiarFormulario();
         }
         
-    }else{
-        // no hace nada
-    }   
+      
 }
 
  function crearNumerosId(){
