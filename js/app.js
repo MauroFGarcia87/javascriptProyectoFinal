@@ -123,5 +123,9 @@ function vaciarCarrito() {
 
 function comprar() {
   Swal.fire("Comprar", "Gracias por realizar tu compra", "success");
-  vaciarCarrito();
+  carrito = [];
+  borrarTabla();
+  localStorage.setItem("listaCarrito", JSON.stringify(carrito));
+  numeroCarrito = 0;
+  iconoCarrito.innerHTML = 0;
 }
