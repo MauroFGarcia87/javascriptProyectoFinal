@@ -9,6 +9,8 @@ let tabla = document.getElementById('cuerpoTabla');
 let iconoCarrito = document.getElementById('nCarrito');
 
 cargaInicial();
+cargaInicialCarrito();
+
 
 function cargaInicial(){
     listaCarpas = JSON.parse(localStorage.getItem('listaCarpas')) || [];
@@ -23,6 +25,12 @@ function cargaInicial(){
         crearCards(itemCarpa);
         console.log(itemCarpa.nombre);
     });
+}
+
+function cargaInicialCarrito(){
+  let carrito = JSON.parse(localStorage.getItem('listaCarrito')) || [];
+  console.log(carrito.length)
+  iconoCarrito.innerHTML = `${carrito.length}`;
 }
 
 function crearCards(itemCarpa){
@@ -48,6 +56,7 @@ function crearCards(itemCarpa){
 }
 
 function agregarAlCarrito(codigoCarpa){
+  carrito = JSON.parse(localStorage.getItem('listaCarrito')) || [];
   listaCarpas.find((itemCarpa)=>{
     if(codigoCarpa == itemCarpa.codigo){
       console.log(itemCarpa);
@@ -94,6 +103,14 @@ function mostarProcuctoCarrito(objCarpa){
 
 function borrarTabla(){
   tabla.innerHTML = '';
+}
+
+function vaciarCarrito() {
+  carrito = [];
+  borrarTabla();
+  localStorage.setItem('listaCarrito', JSON.stringify(carrito));
+  numeroCarrito = 0;
+  iconoCarrito.innerHTML = 0;
 }
 
 
