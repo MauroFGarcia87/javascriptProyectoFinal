@@ -47,13 +47,20 @@ function guardar(e){
     return n;
 }
 
-function cargaIncial(){
-    listaCarpas= JSON.parse(localStorage.getItem('listaCarpas')) || [];
-    console.log(listaCarpas);
-    listaCarpas.forEach(itemCarpa => {
+async function cargaIncial() {
+    try {
+      // Usamos la función para simular un fetch
+      listaCarpas = await obtenerDatosLocalStorage("listaCarpas");
+  
+      console.log(listaCarpas);
+  
+      listaCarpas.forEach((itemCarpa) => {
         crearFila(itemCarpa);
-    });
-}
+      });
+    } catch (error) {
+      console.error("Error al cargar los datos:", error);
+    }
+  }
 
 function crearCarpa(){
     // crea el numero id
@@ -91,6 +98,19 @@ function crearFila(objCarpa){
     </td>
   </tr>`
 }
+
+async function obtenerDatosLocalStorage(key) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        const datos = localStorage.getItem(key);
+        if (datos) {
+          resolve(JSON.parse(datos)); // Devolvemos los datos parseados
+        } else {
+          resolve([]); // Si no hay datos, devolvemos un array vacío
+        }
+      }, 1500); // Retraso de 1.5 segundos
+    });
+  }
 
 window.eliminarCarpa = (cod)=>{
     let carpaFiltrada = listaCarpas.filter((itemCarpa)=>{return itemCarpa.codigo != cod});

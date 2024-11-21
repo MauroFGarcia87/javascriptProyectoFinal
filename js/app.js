@@ -9,26 +9,53 @@ let iconoCarrito = document.getElementById("nCarrito");
 cargaInicial();
 cargaInicialCarrito();
 
-function cargaInicial() {
-  listaCarpas = JSON.parse(localStorage.getItem("listaCarpas")) || [];
-  if (listaCarpas.length == 0) {
-    console.log("El array esta vacio");
-    let grilla = document.getElementById("grilla");
-    grilla.innerHTML += ` <h1> La pagina esta en mantenimiento </h1>
-      <h2>Se esta trabajando en la carga de los productos, regresar en un instante</h2> `;
+async function cargaInicial() {
+  try {
+    // Usamos fetch simulado para obtener los datos
+    listaCarpas = await obtenerDatosLocalStorage("listaCarpas");
+
+    if (listaCarpas.length == 0) {
+      console.log("El array está vacío");
+      let grilla = document.getElementById("grilla");
+      grilla.innerHTML += `<h1> La página está en mantenimiento </h1>
+        <h2>Se está trabajando en la carga de los productos, regrese en un instante</h2>`;
+    }
+
+    console.log(listaCarpas.length);
+    listaCarpas.forEach((itemCarpa) => {
+      crearCards(itemCarpa);
+      console.log(itemCarpa.nombre);
+    });
+  } catch (error) {
+    console.error("Error al cargar los datos:", error);
   }
-  console.log(listaCarpas.length);
-  listaCarpas.forEach((itemCarpa) => {
-    crearCards(itemCarpa);
-    console.log(itemCarpa.nombre);
+}
+
+async function cargaInicialCarrito() {
+  try {
+    // Usamos fetch simulado para obtener los datos del carrito
+    carrito = await obtenerDatosLocalStorage("listaCarrito");
+    console.log(carrito.length);
+    iconoCarrito.innerHTML = `${carrito.length}`;
+  } catch (error) {
+    console.error("Error al cargar el carrito:", error);
+  }
+}
+
+// Simulamos fetch con un retraso para datos almacenados en localStorage
+function obtenerDatosLocalStorage(key) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const datos = localStorage.getItem(key);
+      if (datos) {
+        resolve(JSON.parse(datos)); // Si hay datos, los devolvemos parseados
+      } else {
+        resolve([]); // Si no hay datos, devolvemos un array vacío
+      }
+    }, 1500); // Retraso de 1.5 segundos para simular la espera
   });
 }
 
-function cargaInicialCarrito() {
-  let carrito = JSON.parse(localStorage.getItem("listaCarrito")) || [];
-  console.log(carrito.length);
-  iconoCarrito.innerHTML = `${carrito.length}`;
-}
 
 function crearCards(itemCarpa) {
   let grilla = document.getElementById("grilla");
